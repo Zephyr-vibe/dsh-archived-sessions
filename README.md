@@ -32,19 +32,35 @@ A DSH web plugin: a **Session Manager** in Settings — manage every conversatio
 - **删除父会话不会级联**：子代理、分叉、下载/产出文件均保留，除非你显式勾选它们——避免误删
 - 当前打开的会话显示「当前会话」徽标，且**不可删除**
 
-## Install
+## Install（安装）
 
-### Directly from GitHub (recommended)
+### 方式一：直接 tarball 安装
 
-```sh
-dsh plugin --profile web add github:Zephyr-vibe/dsh-archived-sessions
-```
-
-### Via npm registry (once published)
+Option 1: Direct tarball install.
 
 ```sh
-dsh plugin --profile web add dsh-archived-sessions@0.1.1
+dsh plugin --profile web add https://codeload.github.com/Zephyr-vibe/dsh-archived-sessions/tar.gz/refs/heads/main
 ```
+
+如果 pnpm 拦截构建脚本，在命令末尾加 `--ignore-scripts`：
+
+If pnpm blocks build scripts, append `--ignore-scripts`:
+
+```sh
+dsh plugin --profile web add https://codeload.github.com/Zephyr-vibe/dsh-archived-sessions/tar.gz/refs/heads/main --ignore-scripts
+```
+
+### 方式二：让 agent 安装
+
+Option 2: Let an agent install it — tell your DSH agent:
+
+```text
+帮我把这个项目安装为插件：https://github.com/Zephyr-vibe/dsh-archived-sessions
+```
+
+The agent downloads the repo, places it into the profile's `node_modules`, and registers it in `dsh.profile.bundles`.
+
+agent 会下载项目、放入 profile 的 `node_modules` 并注册到 `dsh.profile.bundles`。
 
 安装后重启 web 端，即可在「设置」中看到「会话管理」入口。
 
