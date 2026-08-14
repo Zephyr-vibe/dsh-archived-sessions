@@ -34,16 +34,16 @@ A DSH web plugin: a **Session Manager** in Settings — manage every conversatio
 
 ## Install
 
-### Via npm registry
-
-```sh
-dsh plugin --profile web add dsh-archived-sessions@<version>
-```
-
-### Directly from GitHub
+### Directly from GitHub (recommended)
 
 ```sh
 dsh plugin --profile web add github:Zephyr-vibe/dsh-archived-sessions
+```
+
+### Via npm registry (once published)
+
+```sh
+dsh plugin --profile web add dsh-archived-sessions@0.1.1
 ```
 
 安装后重启 web 端，即可在「设置」中看到「会话管理」入口。
