@@ -76,9 +76,25 @@ Zero configuration — no setup and no core patches required. The plugin works o
 - **Archive / unarchive**: works on stock Harness, using the same registry state primitives the official `archiveSession` is built on.
 - **Delete**: the plugin detaches workspace accounting, removes the archive-set entry, and deletes the session directory via its physical location. On Harness builds that already provide `workspaceRegistry.deleteSession` / `sessionPersistence.remove`, it uses those instead. Deletion is deliberately **non-cascading**: subagents, forks, and files are untouched unless explicitly selected. Live running sessions are rejected with a friendly message (409); open-but-idle sessions on a stock Harness ask you to switch away or restart first (same limitation as the official sidebar delete, since there is no public "dispose agent" API).
 - **Open record folder**: opens the directory with the OS file manager (`explorer` / `open` / `xdg-open`), cross-platform.
+- **Loopback-bound API**: the plugin's JSON API only trusts loopback requests (127.0.0.1 / localhost / ::1). Starting the web app with `--host 0.0.0.0` or a LAN address makes the Session Manager unavailable (all requests are refused with 403).（API 仅信任本机回环请求：用 `--host 0.0.0.0` 或局域网地址启动 web 端时，「会话管理」不可用，所有请求返回 403。）
+- **Delete current session**: the UI disables deleting the currently open session, and DSH's host side exposes no public "current session" API, so the API itself cannot reject it. Any local process that can reach the loopback API could delete it directly (same behavior as the official delete endpoint) — the running-session 409 guard still applies.（UI 禁止删除当前会话；DSH host 端无公开的「当前会话」API，因此接口本身无法拒绝。任何可访问本机 API 的本地进程仍可直接删除当前会话——与官方删除接口行为一致；运行中会话的 409 保护仍然生效。）
+- **Concurrent archive/unarchive**: the plugin serializes its own archive-set mutations, and deletion cleans up orphaned archive entries, but an extreme race between the plugin queue and the core `archiveSession` queue (same-millisecond archive + unarchive/delete interleaving) can still lose an update; the UI recovers on the next refresh.（插件自身对归档集变更做了串行化，删除也会清理孤儿归档条目；但插件队列与核心 `archiveSession` 队列之间极端并发（同一毫秒内归档与取消归档/删除交错）仍可能丢失一次更新，刷新后 UI 自动恢复。）
 - Only official public APIs are used (`workspaceRegistry`, `sessionPersistence`, the `agents`/`sessions` services, and its own fenced HTTP routes) — no modification of DSH core files.
 
 ## Changelog（更新日志）
+
+### 0.1.2
+
+- **Search box**: filter the session list by title or id in real time
+- **Activity stats** in the detail panel: turns, steps, user/assistant messages, tool-call distribution and fetch history
+- **Safer file deletion**: only files produced by the session can be deleted (directories rejected), with a confirmation dialog and all-settled error summary
+- Batch operations now run in **batches of 20** — selecting hundreds of sessions no longer floods the browser
+- Orphan subagent sessions (parent deleted) are visible again in the workspace view
+- Detail lineage no longer lists the same subagent twice; a failing workspace no longer blocks an entire delete
+- Relative timestamps refresh automatically; keyboard (Tab + Enter/Space) selection; drag-select no longer sticks after releasing outside the window
+- Open-record-folder now works for sessions without a working directory (`_no-cwd` layout); deleting a missing session returns 404
+- Detail responses are bounded (files ≤ 200, fetches ≤ 50) so huge sessions stay snappy
+- README documents the loopback-only API and current-session delete limitation
 
 ### 0.1.1
 
