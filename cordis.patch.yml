@@ -1,0 +1,4 @@
+# dsh-archived-sessions bundle patch: mounts the plugin as one cordis loader entry.
+- insert:
+    - id: dsh-archived-sessions
+      name: 'dsh-archived-sessions'
