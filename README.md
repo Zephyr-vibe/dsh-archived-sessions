@@ -62,6 +62,20 @@ Zero configuration — no setup and no core patches required. The plugin works o
 - **Open record folder**: opens the directory with the OS file manager (`explorer` / `open` / `xdg-open`), cross-platform.
 - Only official public APIs are used (`workspaceRegistry`, `sessionPersistence`, the `agents`/`sessions` services, and its own fenced HTTP routes) — no modification of DSH core files.
 
+## Changelog（更新日志）
+
+### 0.1.1
+
+- Subagent sessions are now **collapsed by default** and expand on click (expand/collapse arrow on the parent row)
+- Subagents follow their parent into the correct **workspace group** (no longer dumped into "Ungrouped")
+- Deleting a parent session is now **non-cascading**: subagents, forks, and files are kept unless explicitly selected
+- Open-record-folder button; batch archive / unarchive / delete with confirmation; current-session protection
+- **Zero config** on stock Harness — official APIs only, no core patches
+
+### 0.1.0
+
+- Initial release: two tabs (All conversations / Archived), flat / by-workspace views, batch archive & delete, detail expansion, subagent nesting
+
 ## License
 
 MIT — © 2026 Zephyr-vibe
