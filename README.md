@@ -75,6 +75,25 @@ agent 会下载项目、放入 profile 的 `node_modules` 并注册到 `dsh.prof
 
 ### 更新日志
 
+#### 0.1.4
+
+- **详情面板关联对话区**：只显示子代理个数（父会话/分叉不再列出）
+- **删除弹窗子代理区**：只显示子代理（含孙级等全部后代），标题带个数
+- **文件列表完善**：树形文件夹展开、列表滚动、显示路径开关（默认只显示文件名）、文件夹路径与文件一致
+- **文件夹行样式统一**：与文件行完全相同的组件与样式，无间距差异；箭头展开/收起带旋转动画
+- 删除会话/删除文件后**自动清理空父目录**（直到非空或工作区根，根目录绝不删除）
+- 已物理删除的文件不再出现在详情/删除弹窗（host 端 stat 过滤）
+- 修复：文件列表包含子代理产出、id 格式兼容（`session-` 前缀）、工作区外文件兜底显示文件名
+
+#### 0.1.3
+
+- **删除确认弹窗升级**：两行确认；可细粒度勾选删除的子代理（含孙级）与下载/产出文件，默认都不勾选
+- **删除级联与文件选项**：删除会话时可一并删除其下子代理（cascade / subagentIds）、下载与产出文件（filePaths，含整个文件夹）
+- **文件夹删除安全规则**：工作区根目录绝不删除；子文件夹可整删（递归）；删除后自动清理空目录（逐级直到非空或工作区根）
+- **文件列表树形显示**：文件夹可展开查看内部文件；列表超出时滚动显示；"显示路径"开关（默认只显示文件名，实时切换完整路径）
+- **默认按工作区分组**；视图切换按钮顺序调整（按工作区在前）
+- 修复：子代理收集双向 id 匹配（`session-` 前缀兼容）、文件列表包含子代理产出、工作区外文件兜底显示文件名
+
 #### 0.1.2
 
 - **搜索框**：按标题或 ID 实时过滤会话列表
@@ -173,6 +192,25 @@ After installing, restart the web app — the Session Manager appears in Setting
 - **Loopback-only API** (127.0.0.1 / localhost / ::1); official public APIs only (`workspaceRegistry`, `sessionPersistence`)
 
 ### Changelog
+
+#### 0.1.4
+
+- **Detail "related conversations"**: now shows only the subagent count (parent / forks no longer listed)
+- **Delete dialog subagent section**: shows only subagents (all descendants incl. grandchildren), with a count
+- **File list polish**: tree-style folder expansion, scrolling, "show paths" toggle (filenames by default), folder paths consistent with files
+- **Folder rows share the exact file-row component/style** — no spacing drift; arrow expand/collapse with rotation animation
+- Deleting a session or file **prunes empty parent directories** (up to the first non-empty dir or the workspace root; roots are never deleted)
+- Physically deleted files no longer appear in details / delete dialogs (host-side stat filter)
+- Fixes: file list includes subagent outputs; id format tolerance (`session-` prefix); files outside workspace roots fall back to filenames
+
+#### 0.1.3
+
+- **Upgraded delete confirmation**: two-line confirm; fine-grained selection of subagents (incl. grandchildren) and downloaded/produced files, nothing checked by default
+- **Cascade & file options**: deleting a session can also remove its subagents (`cascade` / `subagentIds`) and its downloaded/produced files (`filePaths`, including whole folders)
+- **Folder deletion safety**: workspace roots are never deleted; sub-folders can be removed recursively; empty parent directories are pruned automatically (up to the first non-empty dir or the workspace root)
+- **Tree-style file list**: folders expand to show their files; the list scrolls when long; a "show paths" toggle (filenames by default, full paths in real time)
+- **Workspace view by default**; view switch order adjusted (workspace first)
+- Fixes: bidirectional subagent id matching (`session-` prefix tolerant), file list includes subagent outputs, files outside workspace roots fall back to filenames
 
 #### 0.1.2
 

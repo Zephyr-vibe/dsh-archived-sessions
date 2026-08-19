@@ -1,6 +1,6 @@
 {
   "name": "dsh-archived-sessions",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "DSH web plugin: an Archived Sessions manager in Settings — browse archived conversations, expand per-session details (disk usage, downloads, tool usage, lineage, cross-session recall), multi-select and permanently delete.",
   "type": "module",
   "main": "lib/index.js",
