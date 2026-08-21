@@ -1,4 +1,4 @@
-# dsh-archived-sessions 使用手册（v0.1.4）
+# dsh-archived-sessions 使用手册（v0.1.5）
 
 > 安装方法见 README（方式一 tarball / 方式二让智能体安装）。本文只讲**怎么用**。
 
