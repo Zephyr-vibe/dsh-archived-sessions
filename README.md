@@ -36,14 +36,16 @@
 </div>
 
 <div align="center">
-  <img src="docs/删除.jpg" width="48%" alt="批量删除确认" />
-  <img src="docs/详细.png" width="48%" alt="详情面板" />
-  <p>批量删除确认 / 详情面板（含活动统计）</p>
+  <img src="docs/详细.png" width="60%" alt="详情面板" />
+  <p>详情面板（含活动统计、产出文件、关联对话）</p>
 </div>
 
 <div align="center">
+  <img src="docs/删除.jpg" width="60%" alt="会话头部删除按钮" />
+  <p>会话头部「删除会话」入口（rc.8 起删除入口移至会话头部）</p>
+  <br />
   <img src="docs/删除详细.jpg" width="60%" alt="头部删除确认弹窗（细粒度选项）" />
-  <p>会话头部「删除会话」确认弹窗——可勾选删除其下子对话 / 下载·产出文件 / 整个文件夹（rc.8 起删除入口移至会话头部）</p>
+  <p>删除确认弹窗——可勾选删除其下子对话 / 下载·产出文件 / 整个文件夹</p>
 </div>
 
 ### 安装
@@ -173,14 +175,16 @@ A DSH web plugin: a **Session Manager** in Settings — manage every conversatio
 </div>
 
 <div align="center">
-  <img src="docs/删除.jpg" width="48%" alt="Batch delete confirmation" />
-  <img src="docs/详细.png" width="48%" alt="Detail panel" />
-  <p>Batch delete confirmation / Detail panel with activity stats</p>
+  <img src="docs/详细.png" width="60%" alt="Detail panel" />
+  <p>Detail panel — activity stats, produced files, related conversations</p>
 </div>
 
 <div align="center">
+  <img src="docs/删除.jpg" width="60%" alt="Header delete button" />
+  <p>Header "Delete session" entry (since rc.8 the delete entry moved to the session header)</p>
+  <br />
   <img src="docs/删除详细.jpg" width="60%" alt="Header delete dialog with fine-grained options" />
-  <p>Header "Delete session" dialog — optionally delete sub-conversations / downloaded·produced files / whole folders (since rc.8 the delete entry moved to the session header)</p>
+  <p>Delete confirmation dialog — optionally delete sub-conversations / downloaded·produced files / whole folders</p>
 </div>
 
 ### Install
